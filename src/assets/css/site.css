@@ -167,6 +167,11 @@ a:hover { color: var(--action-dark); }
 .industry-card h2 { font-size: var(--step-h3); }
 .industry-card h2 a { color: var(--ink); text-decoration-color: var(--line); }
 .industry-card h2 a:hover { color: var(--action); text-decoration-color: currentColor; }
+.industry-card { overflow: hidden; }
+.industry-card img { width: calc(100% + 3.5rem); max-width: none; margin: -1.75rem -1.75rem 1.25rem; aspect-ratio: 3 / 2; object-fit: cover; }
+.industry-intro { align-items: start; }
+.industry-image { width: 100%; border-radius: var(--radius); aspect-ratio: 494 / 427; object-fit: cover; }
+.results-title { margin-top: 2rem; }
 
 /* Products */
 .product-grid .card h2 { font-size: var(--step-h3); }
