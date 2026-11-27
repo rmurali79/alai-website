@@ -1,13 +1,60 @@
 ---
 title: Request a demo | Alai Labs
 description: Request a demo from Alai Labs, or reach our offices in Singapore, the United States and India.
+scripts: /assets/js/contact-form.react.js
 ---
 <section class="page-head">
   <div class="wrap">
     <h1>Request a demo</h1>
+    <p class="lede">Tell us about your site and what you want to fix. We will set up a demo of the robots, sensors or edge AI that fit.</p>
   </div>
 </section>
-<div class="wrap band">
-  <p class="placeholder">The Request a demo form arrives in unit U9.</p>
-  <p>Email <a href="mailto:info@alai-labs.com">info@alai-labs.com</a> in the meantime.</p>
-</div>
+
+<section class="band" aria-label="Request a demo">
+  <div class="wrap contact-layout">
+    <!-- The form service endpoint goes in data-endpoint and in the form's
+         action (for visitors without JavaScript). Until it is set, the form
+         tells visitors to email instead of pretending to send. -->
+    <div id="contact-form" data-endpoint="" data-reply-time="">
+      <form class="demo-form" method="post">
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-company">Organisation</label><input id="f-company" name="company" type="text" autocomplete="organization" required></div>
+        <div class="field">
+          <label for="f-country">Country</label>
+          <select id="f-country" name="country" required>
+            <option value="">Choose one</option><option>Singapore</option><option>United States</option><option>India</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-industry">Industry <span class="optional">(optional)</span></label>
+          <select id="f-industry" name="industry">
+            <option value="">Choose one</option><option>Ports</option><option>Public cleaning</option><option>Facility management</option><option>Waste management</option><option>Manufacturing</option><option>Infrastructure monitoring</option><option>Occupancy monitoring</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-message">What would you like to see or fix?</label><textarea id="f-message" name="message" rows="5" required></textarea></div>
+        <p class="form-note">We use these details only to reply to you. See our <a href="/privacy/">privacy notice</a>.</p>
+        <noscript><p class="placeholder">If the form does not send, email <a href="mailto:info@alai-labs.com">info@alai-labs.com</a>.</p></noscript>
+        <button class="button" type="submit">Request a demo</button>
+      </form>
+    </div>
+
+    <aside class="contact-aside" aria-labelledby="next-title">
+      <div class="panel">
+        <h2 id="next-title">What happens next</h2>
+        <ol class="steps">
+          <li>We read your request and reply by email.</li>
+          <li>We agree a time and the site or problem to focus on.</li>
+          <li>We show the products or a deployment that fits.</li>
+        </ol>
+        <p class="placeholder">Reply time and who handles requests to be confirmed by the Alai team.</p>
+      </div>
+      <div class="panel">
+        <h2>Other ways to reach us</h2>
+        <p>Email <a href="mailto:info@alai-labs.com">info@alai-labs.com</a></p>
+        <p class="placeholder">Phone number and LinkedIn page to be supplied by the Alai team.</p>
+        <p><a href="/about/">Our offices in Singapore, the United States and India</a></p>
+      </div>
+    </aside>
+  </div>
+</section>

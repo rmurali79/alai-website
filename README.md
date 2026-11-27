@@ -59,6 +59,8 @@ Every page opens with the plum `page-head` band. Below it, use `band` sections (
 
 `src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results, and `scripts: /assets/js/name.react.js` to load a React island on that page only (React is allowed only on Work and Contact; the site-rules check enforces it). Use `{{> cta}}` in a page body for the closing Request a demo band. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
 
+**Request a demo form:** the form service endpoint is one setting, in `src/pages/contact/index.html`: put the URL in `data-endpoint` on `#contact-form` and in the form's `action`, and the reply time in `data-reply-time`. Until it is set, the form tells visitors to email info@alai-labs.com and never shows a false success.
+
 Content the Alai team has not supplied yet goes in a visible `<p class="placeholder">`, never an invented fact.
 
 ## Checks
