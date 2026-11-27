@@ -199,6 +199,14 @@ a:hover { color: var(--plum-dark); }
 .case-story h2 { font-size: var(--step-h3); margin-top: 2rem; }
 .case-story h2:first-child { margin-top: 0; }
 
+/* How we work */
+.band-tight { padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+.method { align-items: start; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; padding: 0 0 1.1rem 3rem; }
+.steps li::before { content: counter(step); position: absolute; left: 0; top: -.1rem; width: 2rem; height: 2rem; border-radius: 50%; background: var(--plum); color: #fff; font-weight: 600; font-size: 1rem; display: grid; place-items: center; }
+.band-stone .steps li::before { background: var(--cover); }
+
 /* Phone and small tablet */
 @media (max-width: 860px) {
   .grid-3, .grid-2, .case-layout { grid-template-columns: minmax(0, 1fr); }

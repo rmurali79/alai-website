@@ -1,12 +1,94 @@
 ---
 title: How we work | Alai Labs
-description: How Alai Labs builds and deploys edge AI: edge server sizing, industrial IoT, remote operation and digital twins.
+description: How Alai Labs builds and deploys edge AI: from defining the problem to a model on site, sizing edge servers, industrial IoT, and remote operation through digital twins.
 ---
 <section class="page-head">
   <div class="wrap">
     <h1>How we work</h1>
+    <p class="lede">We build AI that runs at the edge, on hardware sized for the site, connected to the sensors and machines already there, and watched remotely. Here is how a deployment comes together.</p>
   </div>
 </section>
-<div class="wrap band">
-  <p class="placeholder">This page arrives in unit U7.</p>
-</div>
+
+<nav class="band band-tight" aria-label="On this page">
+  <div class="wrap">
+    <ul class="pill-list">
+      <li><a href="#build">Building the model</a></li>
+      <li><a href="#sizing">Sizing the edge server</a></li>
+      <li><a href="#iiot">Industrial IoT</a></li>
+      <li><a href="#remote">Remote operation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="band band-stone" id="build" aria-labelledby="build-title">
+  <div class="wrap grid-2 method">
+    <div>
+      <h2 id="build-title">1. Building the model</h2>
+      <p>Every model starts from one operational problem, not from a technique. We work through it in the same order each time, so you can see where a project stands.</p>
+    </div>
+    <ol class="steps">
+      <li><strong>Define the problem.</strong> Agree what the model must detect, measure or decide, and what counts as good enough on site.</li>
+      <li><strong>Prepare the data.</strong> Collect and clean images or sensor readings from the real environment.</li>
+      <li><strong>Choose the model.</strong> Pick an approach that fits the job and the hardware it will run on.</li>
+      <li><strong>Train it</strong> on the prepared data.</li>
+      <li><strong>Evaluate it</strong> against the targets agreed in step one.</li>
+      <li><strong>Tune it</strong> until it meets those targets on site conditions.</li>
+      <li><strong>Deploy it</strong> to the edge device on site.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="sizing" aria-labelledby="sizing-title">
+  <div class="wrap grid-2 method">
+    <div>
+      <h2 id="sizing-title">2. Sizing the edge server</h2>
+      <p>Running models on site means results do not wait on a link to the cloud. That only works if the hardware is sized for the real load and the real environment. We size each industrial edge server in five checks.</p>
+    </div>
+    <ol class="steps">
+      <li><strong>Workload.</strong> How many models, cameras and sensors, and how often each must run.</li>
+      <li><strong>Compute and storage.</strong> The processors, accelerators and storage that workload needs.</li>
+      <li><strong>Network and latency.</strong> How fast results must arrive, and what links the site has.</li>
+      <li><strong>Power and thermal.</strong> What the site can supply and how hot or exposed the device will be.</li>
+      <li><strong>Test.</strong> Run the full workload on the chosen hardware before it goes live.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="band band-stone" id="iiot" aria-labelledby="iiot-title">
+  <div class="wrap grid-2 method">
+    <div>
+      <h2 id="iiot-title">3. Industrial IoT</h2>
+      <p>Sensors give the models something to work with and show where assets are. We use outdoor-rated hardware and keep the network secure from sensor to dashboard.</p>
+    </div>
+    <ul class="dot-list">
+      <li>IP67 outdoor-rated sensors</li>
+      <li>UWB, BLE and active tags for location and occupancy</li>
+      <li>Asset and location tracking</li>
+      <li>Predictive maintenance and real-time monitoring</li>
+      <li>Secure industrial IoT architecture</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="remote" aria-labelledby="remote-title">
+  <div class="wrap grid-2 method">
+    <div>
+      <h2 id="remote-title">4. Remote operation and digital twins</h2>
+      <p>Robots and sensors are linked to a 3D digital twin of the site, so your team can see what is happening and take control remotely.</p>
+    </div>
+    <ul class="dot-list">
+      <li>3D digital twin for remote control and monitoring</li>
+      <li>Digital twins and augmented reality for manufacturing</li>
+      <li>Cloud design, implementation and management</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band-stone" aria-labelledby="security-title">
+  <div class="wrap">
+    <h2 id="security-title">Data security and support</h2>
+    <p class="placeholder">How data is stored and protected, who supports a deployment and from where, and typical project timelines. To be supplied by the Alai team.</p>
+  </div>
+</section>
+
+{{> cta}}
