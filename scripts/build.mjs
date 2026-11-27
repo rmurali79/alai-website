@@ -74,13 +74,18 @@ async function build() {
       if (!(name in partials)) throw new Error(`layout: unknown partial "${name}"`);
       return partials[name];
     });
+    // Partials can also be used inside a page body, e.g. {{> cta}}.
+    const expand = (s) => s.replace(/\{\{>\s*(\w+)\s*\}\}/g, (_, name) => {
+      if (!(name in partials)) throw new Error(`${file}: unknown partial "${name}"`);
+      return partials[name];
+    });
     const values = {
       title: escapeAttr(meta.title),
       description: escapeAttr(meta.description),
       canonical: meta.noindex ? '' : `<link rel="canonical" href="${SITE}${url}">`,
       robots: meta.noindex ? '<meta name="robots" content="noindex">' : '',
       year: String(new Date().getFullYear()),
-      body: body.trim(),
+      body: expand(body.trim()),
     };
     html = html.replace(/\{\{\s*(\w+)\s*\}\}/g, (_, key) => {
       if (!(key in values)) throw new Error(`layout: unknown value "${key}"`);
