@@ -1,0 +1,26 @@
+{
+  "name": "alai-website",
+  "private": true,
+  "type": "module",
+  "description": "Source for the new alai-labs.com",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs",
+    "check:pages": "node scripts/check-pages.mjs",
+    "check:html": "html-validate \"dist/**/*.html\"",
+    "check:links": "node scripts/check-links.mjs",
+    "check:a11y": "node tests/a11y.mjs",
+    "check:lighthouse": "lhci autorun",
+    "check": "npm run build && npm run check:pages && npm run check:html && npm run check:links && npm run check:a11y"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.1",
+    "@lhci/cli": "0.16.1",
+    "html-validate": "11.23.0",
+    "playwright": "1.63.0"
+  }
+}
