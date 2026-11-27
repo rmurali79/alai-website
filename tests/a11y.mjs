@@ -1,5 +1,5 @@
 // Accessibility check: loads every built page in Chromium and runs axe-core
-// against WCAG 2.0, 2.1 and 2.2 A/AA rules, at phone (390px) and desktop (1440px)
+// against WCAG 2.0, 2.1 and 2.2 A/AA rules, at phone (390px), tablet (768px) and desktop (1440px)
 // widths, with reduced motion requested. Any violation fails the run.
 import { chromium } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
@@ -35,7 +35,7 @@ await new Promise((r) => setTimeout(r, 500));
 let failures = 0;
 const browser = await chromium.launch();
 try {
-  for (const width of [390, 1440]) {
+  for (const width of [390, 768, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
     for (const url of await pages(dist)) {
