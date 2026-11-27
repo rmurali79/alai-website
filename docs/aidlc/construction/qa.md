@@ -28,7 +28,6 @@ These show as visible placeholders on the site. None of them block a review, but
 
 - \* Form service, who receives demo requests, and the reply time
 - \* Legal review of the privacy notice
-- \* Phone number and LinkedIn page
 - Client-to-industry mapping for the five case studies (currently marked "to confirm"), and which products are used in each industry
 - Case study content: the problem, what was deployed, measured results and photos
 - Product specifications (dimensions, battery and run time, cleaning functions and others), deployments, photos and clips
