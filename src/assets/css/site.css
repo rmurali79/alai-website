@@ -156,6 +156,16 @@ a:hover { color: var(--plum-dark); }
 .logo-grid a img { max-height: 3.25rem; width: auto; object-fit: contain; }
 .logo-tag { position: absolute; right: .5rem; bottom: .35rem; font-size: .8125rem; font-weight: 600; color: var(--plum); }
 
+/* Solutions */
+.breadcrumb { margin: 0 0 .75rem; font-weight: 600; }
+.breadcrumb a::after { content: " /"; color: var(--on-cover); }
+.breadcrumb a { color: var(--on-cover); }
+.breadcrumb a:hover { color: #fff; }
+.industry-grid { list-style: none; padding: 0; margin: 0; }
+.industry-card h2 { font-size: var(--step-h3); }
+.industry-card h2 a { color: var(--ink); text-decoration-color: var(--line); }
+.industry-card h2 a:hover { color: var(--plum); text-decoration-color: currentColor; }
+
 /* Phone and small tablet */
 @media (max-width: 860px) {
   .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); }
