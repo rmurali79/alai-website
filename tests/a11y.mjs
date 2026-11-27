@@ -90,6 +90,31 @@ try {
   check(await npage.locator('#site-menu').isVisible(), 'without JavaScript the menu should show in full');
   await nojs.close();
   if (!failures) console.log('✓ phone menu: keyboard, Escape, no-JS fallback');
+
+  // Work filter (US-07): all case studies without JavaScript; with it, the
+  // filter narrows the list, announces the count, and passes axe.
+  const before = failures;
+  const wnojs = await browser.newContext({ javaScriptEnabled: false });
+  const wn = await wnojs.newPage();
+  await wn.goto(base + '/work/');
+  const all = await wn.locator('[data-case]').count();
+  check(all >= 5, `without JavaScript the Work page shows ${all} case studies, expected all`);
+  await wnojs.close();
+  const wjs = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  const wp = await wjs.newPage();
+  await wp.goto(base + '/work/');
+  const buttons = wp.locator('.filter-button');
+  await buttons.first().waitFor();
+  check((await wp.locator('[data-case]').count()) === all, 'filter "All" should show every case study');
+  await buttons.nth(1).click();
+  const one = await wp.locator('[data-case]').count();
+  check(one >= 1 && one < all, `filtering by one industry shows ${one} of ${all}`);
+  check((await buttons.nth(1).getAttribute('aria-pressed')) === 'true', 'pressed filter button needs aria-pressed="true"');
+  check(/Showing \d+ of \d+/.test(await wp.locator('.filter-status').textContent()), 'filter status not announced');
+  const wv = await new AxeBuilder({ page: wp }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  for (const v of wv.violations) check(false, `work filter: ${v.id} ${v.help}`);
+  await wjs.close();
+  if (failures === before) console.log('✓ work filter: no-JS list, filtering, aria-pressed, status');
 } finally {
   await browser.close();
   server.kill();

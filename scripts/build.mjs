@@ -4,6 +4,7 @@
 import { readFile, writeFile, mkdir, rm, cp, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { build as esbuild } from 'esbuild';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -84,6 +85,7 @@ async function build() {
       description: escapeAttr(meta.description),
       canonical: meta.noindex ? '' : `<link rel="canonical" href="${SITE}${url}">`,
       robots: meta.noindex ? '<meta name="robots" content="noindex">' : '',
+      scripts: (meta.scripts ?? '').split(/\s+/).filter(Boolean).map((s) => `<script src="${escapeAttr(s)}" defer></script>`).join('\n'),
       year: String(new Date().getFullYear()),
       body: expand(body.trim()),
     };
@@ -96,7 +98,24 @@ async function build() {
     await mkdir(path.dirname(dest), { recursive: true });
     await writeFile(dest, html);
   }
-  console.log(`Built ${pages.length} page(s) into dist/`);
+  // React islands: each src/react/<name>.jsx becomes /assets/js/<name>.react.js,
+  // loaded only by the page that needs it (Work and Contact).
+  const islands = (await readdir(path.join(src, 'react'))).filter((f) => f.endsWith('.jsx'));
+  for (const file of islands) {
+    await esbuild({
+      entryPoints: [path.join(src, 'react', file)],
+      outfile: path.join(out, 'assets/js', file.replace(/\.jsx$/, '.react.js')),
+      bundle: true,
+      minify: true,
+      format: 'iife',
+      target: 'es2020',
+      jsx: 'automatic',
+      define: { 'process.env.NODE_ENV': '"production"' },
+      legalComments: 'none',
+      logLevel: 'warning',
+    });
+  }
+  console.log(`Built ${pages.length} page(s) and ${islands.length} React island(s) into dist/`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

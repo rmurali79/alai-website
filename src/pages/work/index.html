@@ -1,12 +1,50 @@
 ---
 title: Work and case studies | Alai Labs
 description: Case studies of Alai Labs deployments with NEA, CTM, PSA, SMRT and Sodick.
+scripts: /assets/js/work-filter.react.js
 ---
 <section class="page-head">
   <div class="wrap">
     <h1>Work</h1>
+    <p class="lede">Five deployments with public agencies and industry. Filter by industry to find work like yours.</p>
   </div>
 </section>
-<div class="wrap band">
-  <p class="placeholder">The case study index, with a filter by industry, and five case studies arrive in unit U6.</p>
-</div>
+
+<section class="band band-stone" aria-label="Case studies">
+  <div class="wrap" id="work-filter">
+    <ul class="grid-3 case-grid">
+      <li class="panel case" data-case="nea" data-industry="Public cleaning">
+        <img class="case-logo" src="/assets/img/logos/nea.webp" alt="" width="218" height="83" loading="lazy">
+        <h2 class="case-title"><a href="/work/nea/">National Environment Agency</a></h2>
+        <p class="case-industry">Public cleaning <span class="tbc">to confirm</span></p>
+        <p class="placeholder">Problem and result to be supplied by the Alai team.</p>
+      </li>
+      <li class="panel case" data-case="ctm" data-industry="Facility management">
+        <img class="case-logo" src="/assets/img/logos/ctm.webp" alt="" width="128" height="160" loading="lazy">
+        <h2 class="case-title"><a href="/work/ctm/">CTM</a></h2>
+        <p class="case-industry">Facility management <span class="tbc">to confirm</span></p>
+        <p class="placeholder">Problem and result to be supplied by the Alai team.</p>
+      </li>
+      <li class="panel case" data-case="psa" data-industry="Ports">
+        <img class="case-logo" src="/assets/img/logos/psa.webp" alt="" width="320" height="56" loading="lazy">
+        <h2 class="case-title"><a href="/work/psa/">PSA</a></h2>
+        <p class="case-industry">Ports <span class="tbc">to confirm</span></p>
+        <p class="placeholder">Problem and result to be supplied by the Alai team.</p>
+      </li>
+      <li class="panel case" data-case="smrt" data-industry="Infrastructure monitoring">
+        <img class="case-logo" src="/assets/img/logos/smrt.webp" alt="" width="210" height="112" loading="lazy">
+        <h2 class="case-title"><a href="/work/smrt/">SMRT Corporation</a></h2>
+        <p class="case-industry">Infrastructure monitoring <span class="tbc">to confirm</span></p>
+        <p class="placeholder">Problem and result to be supplied by the Alai team.</p>
+      </li>
+      <li class="panel case" data-case="sodick" data-industry="Manufacturing">
+        <img class="case-logo" src="/assets/img/logos/sodick.webp" alt="" width="127" height="136" loading="lazy">
+        <h2 class="case-title"><a href="/work/sodick/">Sodick</a></h2>
+        <p class="case-industry">Manufacturing <span class="tbc">to confirm</span></p>
+        <p class="placeholder">Problem and result to be supplied by the Alai team.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{{> cta}}
