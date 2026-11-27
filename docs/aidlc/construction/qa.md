@@ -34,7 +34,6 @@ These show as visible placeholders on the site. None of them block a review, but
 - Product specifications (dimensions, battery and run time, cleaning functions and others), deployments, photos and clips
 - Leadership photos and short bios, the company story, partners and careers
 - Data security and support details
-- Vector logo (the wordmark is set in type until then)
 - A share image for social cards
 
 ## Sign-off
