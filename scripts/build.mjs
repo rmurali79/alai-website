@@ -85,6 +85,7 @@ async function build() {
       description: escapeAttr(meta.description),
       canonical: meta.noindex ? '' : `<link rel="canonical" href="${SITE}${url}">`,
       robots: meta.noindex ? '<meta name="robots" content="noindex">' : '',
+      ogurl: meta.noindex ? '' : `<meta property="og:url" content="${SITE}${url}">`,
       scripts: (meta.scripts ?? '').split(/\s+/).filter(Boolean).map((s) => `<script src="${escapeAttr(s)}" defer></script>`).join('\n'),
       year: String(new Date().getFullYear()),
       body: expand(body.trim()),
@@ -98,6 +99,18 @@ async function build() {
     await mkdir(path.dirname(dest), { recursive: true });
     await writeFile(dest, html);
   }
+  // sitemap.xml and robots.txt, from every page that is not noindex.
+  const urls = [];
+  for (const file of pages) {
+    const { meta } = parsePage(await readFile(path.join(src, 'pages', file), 'utf8'), file);
+    if (!meta.noindex) urls.push(`${SITE}${urlPath(file)}`);
+  }
+  await writeFile(
+    path.join(out, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`,
+  );
+  await writeFile(path.join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+
   // React islands: each src/react/<name>.jsx becomes /assets/js/<name>.react.js,
   // loaded only by the page that needs it (Work and Contact).
   const islands = (await readdir(path.join(src, 'react'))).filter((f) => f.endsWith('.jsx'));

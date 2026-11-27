@@ -29,7 +29,8 @@ src/
     fonts/           Source Serif 4 and Source Sans 3, self-hosted (OFL)
     js/menu.js       the phone menu button; without JavaScript the menu shows in full
 scripts/
-  build.mjs          stamps layout and partials into each page, bundles React islands with esbuild, writes dist/
+  build.mjs          stamps layout and partials into each page, bundles React islands with esbuild,
+                     writes sitemap.xml and robots.txt, and outputs dist/
   serve.mjs          local preview of dist/
   check-pages.mjs    site rules: one H1, unique title and description, motion budget
   check-links.mjs    every internal link and image points at a real file
@@ -69,7 +70,7 @@ Every pull request runs these in GitHub Actions; a failure blocks the merge.
 
 | Check | Command | What fails it |
 | --- | --- | --- |
-| Site rules | `npm run check:pages` | Not exactly one H1, a repeated or missing title or description, autoplay media, a banned motion library, no reduced-motion rule, React outside Work and Contact |
+| Site rules | `npm run check:pages` | Not exactly one H1, a repeated or missing title or description, autoplay media, a banned motion library, no reduced-motion rule, React outside Work and Contact, invalid structured data, an indexable page missing from the sitemap |
 | HTML validity | `npm run check:html` | Invalid HTML ([html-validate](https://html-validate.org), recommended and a11y rules) |
 | Internal links | `npm run check:links` | A link, image or `#anchor` that points nowhere |
 | Accessibility | `npm run check:a11y` | Any axe WCAG 2.2 A/AA violation, or sideways scrolling, at 390 or 1440 px; a phone menu that doesn't open from the keyboard, close on Escape, or show without JavaScript |

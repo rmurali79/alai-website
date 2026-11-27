@@ -1,7 +1,8 @@
 // Site rules from CLAUDE.md that generic tools do not check, run on the built dist/:
 // one H1 per page, unique title and description, a lang attribute,
 // and the motion budget (no autoplay, no banned motion libraries,
-// a prefers-reduced-motion rule in the CSS), and React only on Work and Contact.
+// a prefers-reduced-motion rule in the CSS), React only on Work and Contact,
+// valid structured data, and every indexable page listed in sitemap.xml.
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,6 +20,7 @@ async function walk(dir) {
 }
 
 const files = await walk(dist);
+const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8').catch(() => '');
 const errors = [];
 const seen = { title: new Map(), description: new Map() };
 
@@ -37,6 +39,14 @@ for (const file of files.filter((f) => f.endsWith('.html'))) {
     else seen[key].set(value, rel);
   }
 
+  for (const ld of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try { JSON.parse(ld[1]); } catch { errors.push(`${rel}: structured data is not valid JSON`); }
+  }
+  const noindex = /<meta name="robots" content="noindex">/.test(html);
+  if (!noindex) {
+    const loc = 'https://alai-labs.com/' + rel.replace(/\\/g, '/').replace(/index\.html$/, '');
+    if (!sitemap.includes(`<loc>${loc}</loc>`)) errors.push(`${rel}: missing from sitemap.xml`);
+  }
   if (/<(video|audio)\b[^>]*\bautoplay\b/i.test(html)) errors.push(`${rel}: autoplay media breaks the motion budget`);
   if (/<marquee\b/i.test(html)) errors.push(`${rel}: <marquee> breaks the motion budget`);
   for (const src of html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+)"/gi)) {
