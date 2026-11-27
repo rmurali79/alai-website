@@ -64,7 +64,7 @@ try {
   await page.goto(base + '/');
   const button = page.locator('.menu-button');
   const menu = page.locator('#site-menu');
-  const check = (ok, msg) => { if (!ok) { failures++; console.error(`✗ phone menu: ${msg}`); } };
+  const check = (ok, msg) => { if (!ok) { failures++; console.error(`✗ ${msg}`); } };
   check(await button.isVisible(), 'Menu button not shown at 390px');
   check(!(await menu.isVisible()), 'menu should start closed at 390px');
   await button.focus();
@@ -115,6 +115,50 @@ try {
   for (const v of wv.violations) check(false, `work filter: ${v.id} ${v.help}`);
   await wjs.close();
   if (failures === before) console.log('✓ work filter: no-JS list, filtering, aria-pressed, status');
+
+  // Contact form (US-08): inline errors tied to fields, focus moves to the
+  // first problem, and a successful send confirms on the page.
+  const before2 = failures;
+  const cctx = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const cp = await cctx.newPage();
+  await cp.route('https://forms.test/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
+  await cp.goto(base + '/contact/');
+  await cp.locator('#cf-name').waitFor();
+  await cp.locator('.demo-form button[type=submit]').click();
+  check((await cp.evaluate(() => document.activeElement?.id)) === 'cf-name', 'empty submit should focus the first invalid field');
+  check((await cp.locator('#cf-name').getAttribute('aria-describedby')) === 'cf-name-error', 'error message not linked to its field');
+  const ce = await new AxeBuilder({ page: cp }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  for (const v of ce.violations) check(false, `contact form with errors: ${v.id} ${v.help}`);
+  await cp.locator('#cf-email').fill('not-an-email');
+  await cp.locator('#cf-email').blur();
+  check(/name@company\.com/.test(await cp.locator('#cf-email-error').textContent()), 'bad email not explained');
+  // Point the form at a fake service and send a valid request.
+  await cp.evaluate(() => { document.getElementById('contact-form').dataset.endpoint = 'https://forms.test/f'; });
+  await cp.locator('#cf-name').fill('Test Person');
+  await cp.locator('#cf-email').fill('test@example.com');
+  await cp.locator('#cf-company').fill('Example Pte Ltd');
+  await cp.locator('#cf-country').selectOption('Singapore');
+  await cp.locator('#cf-message').fill('We would like to see the Janitor Robot.');
+  await cp.locator('.demo-form button[type=submit]').click();
+  await cp.locator('.form-done').waitFor({ timeout: 5000 }).catch(() => {});
+  check(await cp.locator('.form-done').isVisible(), 'a successful send should confirm on the page');
+  check((await cp.evaluate(() => document.activeElement?.className)) === 'form-done', 'focus should move to the confirmation');
+  await cctx.close();
+  // With no endpoint configured, the form must say so rather than claim success.
+  const c2 = await browser.newContext();
+  const p2 = await c2.newPage();
+  await p2.goto(base + '/contact/');
+  await p2.locator('#cf-name').waitFor();
+  await p2.locator('#cf-name').fill('Test Person');
+  await p2.locator('#cf-email').fill('test@example.com');
+  await p2.locator('#cf-company').fill('Example Pte Ltd');
+  await p2.locator('#cf-country').selectOption('Singapore');
+  await p2.locator('#cf-message').fill('We would like to see the Janitor Robot.');
+  await p2.locator('.demo-form button[type=submit]').click();
+  check(/not connected yet/.test(await p2.locator('.form-error').textContent()), 'unconnected form should tell visitors to email');
+  check((await p2.locator('.form-done').count()) === 0, 'unconnected form must not show a success message');
+  await c2.close();
+  if (failures === before2) console.log('✓ contact form: inline errors, focus, no false success');
 } finally {
   await browser.close();
   server.kill();
