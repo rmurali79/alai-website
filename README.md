@@ -27,7 +27,7 @@ src/
   react/             React islands: work-filter.jsx becomes /assets/js/work-filter.react.js
   assets/            copied as they are:
     css/site.css     design tokens (colours, type, spacing) and all shared styles
-    fonts/           Source Serif 4 and Source Sans 3, self-hosted (OFL)
+    fonts/           Space Grotesk and Manrope, self-hosted (OFL)
     js/menu.js       the phone menu button; without JavaScript the menu shows in full
 scripts/
   build.mjs          stamps layout and partials into each page, bundles React islands with esbuild,

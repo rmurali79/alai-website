@@ -35,3 +35,11 @@ Design direction B, Warm and confident, chosen by Muralidharan on 27 Nov 2026: S
 ## Decision for U0
 
 Shared header and footer across about 20 pages: either copy them into each HTML file, or use a tiny build script that stamps them in and outputs plain HTML. Recommended: the build script, because it keeps the menu in one place while the published site stays plain HTML.
+
+## Brand update (27 Nov 2026)
+
+Muralidharan sent the official logo and colour guide and asked for the site to use its logo and colours, with the type from peerpost.online. Design B keeps its layout, rounded cards and calm motion. What changed:
+
+- **Logo:** `src/assets/img/brand/`, made from the guide's transparent PNG. Header: icon and white wordmark on navy. Footer: full-colour icon and navy wordmark. Also a favicon and the logo in the Organization structured data.
+- **Colours:** deep navy `#01174C` for the header, page heads and closing band. Actions are `#005fd0`, a darker step of the logo's electric blue `#0075FD` so links pass 4.5:1 on white. Cyan `#01BFFD` is for accents on navy. Lines use soft silver `#DADDE4`, and alternate sections a light step of it, `#f2f4f8`.
+- **Type:** Space Grotesk 600 for headings and Manrope 400/600 for text, self-hosted from Fontsource (OFL), as used on peerpost.online.
