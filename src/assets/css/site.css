@@ -166,6 +166,19 @@ a:hover { color: var(--plum-dark); }
 .industry-card h2 a { color: var(--ink); text-decoration-color: var(--line); }
 .industry-card h2 a:hover { color: var(--plum); text-decoration-color: currentColor; }
 
+/* Products */
+.product-grid .card h2 { font-size: var(--step-h3); }
+.product-intro { align-items: start; }
+.product-picture img { border-radius: var(--radius); width: 100%; }
+.product-picture figcaption { font-size: .9375rem; color: var(--muted); margin-top: .6rem; }
+.table-wrap { overflow-x: auto; }
+.spec-table { width: 100%; max-width: 52rem; border-collapse: collapse; background: #fff; border-radius: var(--radius-small); overflow: hidden; }
+.spec-table th, .spec-table td { text-align: left; vertical-align: top; padding: .85rem 1.1rem; border-bottom: 1px solid var(--line); }
+.spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: 0; }
+.spec-table th { width: 34%; font-weight: 600; }
+.tbc { display: inline-block; border: 2px dashed #8a6d00; background: #fff8db; color: #3d3000; padding: 0 .4rem; border-radius: 6px; font-size: 1rem; }
+.note { font-size: 1rem; color: var(--muted); margin-top: 1rem; }
+
 /* Phone and small tablet */
 @media (max-width: 860px) {
   .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); }
