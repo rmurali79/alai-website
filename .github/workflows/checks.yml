@@ -1,0 +1,47 @@
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site:
+    name: Build and check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Site rules (one H1, unique title and description, motion budget)
+        run: npm run check:pages
+      - name: HTML validity
+        run: npm run check:html
+      - name: Internal links
+        run: npm run check:links
+      - name: Install Chromium for the accessibility check
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility (axe, WCAG 2.2 AA, 390 and 1440 px)
+        run: npm run check:a11y
+      - name: Lighthouse (performance 90+, accessibility 95+)
+        run: npm run check:lighthouse
+      - name: Keep Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          if-no-files-found: ignore

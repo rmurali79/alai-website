@@ -1,0 +1,59 @@
+/* Foundation styles (U0). Brand type, colour and spacing arrive with the
+   chosen design direction (U1) and the layout shell (U2). */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+img, video { max-width: 100%; height: auto; }
+
+.wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+
+a { color: #0b4f9c; }
+a:hover { color: #083a73; }
+
+:focus-visible { outline: 3px solid #0b4f9c; outline-offset: 2px; }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #0b4f9c;
+}
+.skip-link:focus { top: 1rem; }
+
+.site-header, .site-footer { padding-block: 1rem; }
+.site-header { border-bottom: 1px solid #ddd; }
+.site-footer { border-top: 1px solid #ddd; margin-top: 4rem; color: #444; }
+.brand { font-weight: 700; text-decoration: none; color: inherit; }
+
+main { padding-block: 3rem; }
+
+/* Visible placeholder for content the Alai team has not supplied yet. */
+.placeholder {
+  border: 2px dashed #8a6d00;
+  background: #fff8db;
+  color: #3d3000;
+  padding: 1rem;
+}
+
+/* Motion budget: hover and focus feedback only, and none under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
