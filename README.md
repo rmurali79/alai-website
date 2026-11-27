@@ -23,12 +23,13 @@ src/
   layout.html        the page shell: <head>, skip link, header, main, footer
   partials/          header.html and footer.html, shared by every page
   pages/             one file per page; the path is the URL
+  react/             React islands: work-filter.jsx becomes /assets/js/work-filter.react.js
   assets/            copied as they are:
     css/site.css     design tokens (colours, type, spacing) and all shared styles
     fonts/           Source Serif 4 and Source Sans 3, self-hosted (OFL)
     js/menu.js       the phone menu button; without JavaScript the menu shows in full
 scripts/
-  build.mjs          stamps layout and partials into each page, writes dist/
+  build.mjs          stamps layout and partials into each page, bundles React islands with esbuild, writes dist/
   serve.mjs          local preview of dist/
   check-pages.mjs    site rules: one H1, unique title and description, motion budget
   check-links.mjs    every internal link and image points at a real file
@@ -56,7 +57,7 @@ description: One sentence, unique to this page.
 
 Every page opens with the plum `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B, Warm and confident, chosen in U1.
 
-`src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
+`src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results, and `scripts: /assets/js/name.react.js` to load a React island on that page only (React is allowed only on Work and Contact; the site-rules check enforces it). Use `{{> cta}}` in a page body for the closing Request a demo band. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
 
 Content the Alai team has not supplied yet goes in a visible `<p class="placeholder">`, never an invented fact.
 
