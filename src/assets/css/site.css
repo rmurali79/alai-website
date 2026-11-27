@@ -240,7 +240,8 @@ a:hover { color: var(--plum-dark); }
 
 /* Phone and small tablet */
 @media (max-width: 860px) {
-  .grid-3, .grid-2, .case-layout, .contact-layout { grid-template-columns: minmax(0, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-layout, .contact-layout { grid-template-columns: minmax(0, 1fr); }
   .js .menu-button { display: inline-block; }
   .js .menu { display: none; width: 100%; margin: 0; }
   .js .menu.is-open { display: block; }
@@ -253,6 +254,7 @@ a:hover { color: var(--plum-dark); }
   .menu-cta .button { display: block; text-align: center; padding: .8rem 1.4rem; }
 }
 @media (max-width: 600px) {
+  .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); }
   .logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
   .logo-grid li > img, .logo-grid a { height: 4.75rem; padding: .55rem; }
   .logo-grid a { padding-bottom: 1.3rem; }

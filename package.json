@@ -15,7 +15,8 @@
     "check:links": "node scripts/check-links.mjs",
     "check:a11y": "node tests/a11y.mjs",
     "check:lighthouse": "lhci autorun",
-    "check": "npm run build && npm run check:pages && npm run check:html && npm run check:links && npm run check:a11y"
+    "check": "npm run build && npm run check:pages && npm run check:html && npm run check:links && npm run check:a11y",
+    "preview": "npm run build && node scripts/preview.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.1",
