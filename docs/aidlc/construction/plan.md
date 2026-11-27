@@ -30,7 +30,7 @@ Content still missing (results, bios, specs) is marked with a visible placeholde
 
 ## Decision for U1
 
-Design direction B, Warm and confident, chosen by Muralidharan on 27 Nov 2026: Source Serif 4 headings, Source Sans 3 text, deep plum cover band (#3a0f2e), white and stone (#f4f1ed) sections, plum (#8a1f5f) actions, rounded cards. Mock-ups in `design/u1/`.
+Design direction B, Warm and confident, chosen by Muralidharan on 27 Nov 2026: Source Serif 4 headings, Source Sans 3 text, deep plum cover band (#3a0f2e), white and stone (#f4f1ed) sections, plum (#8a1f5f) actions, rounded cards. Mock-ups were in `design/u1/` (removed in U3; see PR #3 history).
 
 ## Decision for U0
 

@@ -54,7 +54,7 @@ description: One sentence, unique to this page.
 </section>
 ```
 
-Every page opens with the plum `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B, Warm and confident, chosen in U1 (see `design/u1/`).
+Every page opens with the plum `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B, Warm and confident, chosen in U1.
 
 `src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
 
@@ -70,6 +70,6 @@ Every pull request runs these in GitHub Actions; a failure blocks the merge.
 | HTML validity | `npm run check:html` | Invalid HTML ([html-validate](https://html-validate.org), recommended and a11y rules) |
 | Internal links | `npm run check:links` | A link, image or `#anchor` that points nowhere |
 | Accessibility | `npm run check:a11y` | Any axe WCAG 2.2 A/AA violation, or sideways scrolling, at 390 or 1440 px; a phone menu that doesn't open from the keyboard, close on Escape, or show without JavaScript |
-| Lighthouse | `npm run check:lighthouse` | Performance or best practices under 90, accessibility under 95, SEO under 90 (404 page excluded from SEO) |
+| Lighthouse | `npm run check:lighthouse` | On every page (2 runs each): performance or best practices under 90, accessibility under 95, SEO under 90 (404 page excluded from SEO) |
 
 To run Lighthouse locally, point it at a Chrome: `CHROME_PATH=/path/to/chrome npm run check:lighthouse`.
