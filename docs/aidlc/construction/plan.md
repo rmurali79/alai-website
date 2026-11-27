@@ -28,6 +28,10 @@ Content still missing (results, bios, specs) is marked with a visible placeholde
 | O3 | Move DNS from AWS to the new host (Alai team approves go-live) |
 | O4 | Submit sitemap and remove spam URLs in Google Search Console |
 
+## Decision for U1
+
+Design direction B, Warm and confident, chosen by Muralidharan on 27 Nov 2026: Source Serif 4 headings, Source Sans 3 text, deep plum cover band (#3a0f2e), white and stone (#f4f1ed) sections, plum (#8a1f5f) actions, rounded cards. Mock-ups in `design/u1/`.
+
 ## Decision for U0
 
 Shared header and footer across about 20 pages: either copy them into each HTML file, or use a tiny build script that stamps them in and outputs plain HTML. Recommended: the build script, because it keeps the menu in one place while the published site stays plain HTML.
