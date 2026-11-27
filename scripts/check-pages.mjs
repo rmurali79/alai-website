@@ -1,7 +1,7 @@
 // Site rules from CLAUDE.md that generic tools do not check, run on the built dist/:
 // one H1 per page, unique title and description, a lang attribute,
 // and the motion budget (no autoplay, no banned motion libraries,
-// a prefers-reduced-motion rule in the CSS).
+// a prefers-reduced-motion rule in the CSS), and React only on Work and Contact.
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -42,6 +42,8 @@ for (const file of files.filter((f) => f.endsWith('.html'))) {
   for (const src of html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+)"/gi)) {
     if (BANNED.test(src[1])) errors.push(`${rel}: loads a banned motion library (${src[1]})`);
   }
+  const reactAllowed = /^(work|contact)[\\/]index\.html$/.test(rel);
+  if (!reactAllowed && /<script\b[^>]*src="[^"]*react/i.test(html)) errors.push(`${rel}: React is only allowed on the Work and Contact pages`);
 }
 
 const css = files.filter((f) => f.endsWith('.css'));
