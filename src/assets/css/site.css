@@ -136,6 +136,9 @@ a:hover { color: var(--action-dark); }
 .case h3 a { color: var(--ink); }
 .quote blockquote p { font-family: var(--display); font-size: clamp(1.35rem, 1.05rem + 1vw, 1.85rem); line-height: 1.4; max-width: 50rem; margin-bottom: 1rem; }
 .quote figcaption { color: var(--muted); font-weight: 600; }
+.quotes { display: grid; gap: 2.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.quotes .quote blockquote p { font-size: clamp(1.15rem, 1rem + .5vw, 1.4rem); }
+@media (max-width: 860px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; }
 .cta-row h2 { margin-bottom: .75rem; }
 .cta-row p { margin: 0 0 .75rem; max-width: 40rem; }
