@@ -23,7 +23,10 @@ src/
   layout.html        the page shell: <head>, skip link, header, main, footer
   partials/          header.html and footer.html, shared by every page
   pages/             one file per page; the path is the URL
-  assets/            CSS, images, fonts and scripts, copied as they are
+  assets/            copied as they are:
+    css/site.css     design tokens (colours, type, spacing) and all shared styles
+    fonts/           Source Serif 4 and Source Sans 3, self-hosted (OFL)
+    js/menu.js       the phone menu button; without JavaScript the menu shows in full
 scripts/
   build.mjs          stamps layout and partials into each page, writes dist/
   serve.mjs          local preview of dist/
@@ -40,11 +43,18 @@ A page is HTML with a short header:
 title: Ports | Alai Labs
 description: One sentence, unique to this page.
 ---
-<div class="wrap">
-  <h1>Ports</h1>
-  ...
-</div>
+<section class="page-head">
+  <div class="wrap">
+    <h1>Ports</h1>
+    <p class="lede">One or two sentences under the title.</p>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">...</div>
+</section>
 ```
+
+Every page opens with the plum `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B, Warm and confident, chosen in U1 (see `design/u1/`).
 
 `src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
 
@@ -56,10 +66,10 @@ Every pull request runs these in GitHub Actions; a failure blocks the merge.
 
 | Check | Command | What fails it |
 | --- | --- | --- |
-| Site rules | `npm run check:pages` | Not exactly one H1, a repeated or missing title or description, autoplay media, a banned motion library, no reduced-motion rule |
+| Site rules | `npm run check:pages` | Not exactly one H1, a repeated or missing title or description, autoplay media, a banned motion library, no reduced-motion rule, React outside Work and Contact |
 | HTML validity | `npm run check:html` | Invalid HTML ([html-validate](https://html-validate.org), recommended and a11y rules) |
 | Internal links | `npm run check:links` | A link, image or `#anchor` that points nowhere |
-| Accessibility | `npm run check:a11y` | Any axe WCAG 2.2 A/AA violation, or sideways scrolling, at 390 or 1440 px |
+| Accessibility | `npm run check:a11y` | Any axe WCAG 2.2 A/AA violation, or sideways scrolling, at 390 or 1440 px; a phone menu that doesn't open from the keyboard, close on Escape, or show without JavaScript |
 | Lighthouse | `npm run check:lighthouse` | Performance or best practices under 90, accessibility under 95, SEO under 90 (404 page excluded from SEO) |
 
 To run Lighthouse locally, point it at a Chrome: `CHROME_PATH=/path/to/chrome npm run check:lighthouse`.

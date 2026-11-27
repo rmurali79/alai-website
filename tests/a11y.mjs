@@ -56,6 +56,40 @@ try {
     }
     await context.close();
   }
+
+  // Phone menu: hidden behind a Menu button at 390px, opens and closes from
+  // the keyboard, closes on Escape, and passes axe while open.
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  await page.goto(base + '/');
+  const button = page.locator('.menu-button');
+  const menu = page.locator('#site-menu');
+  const check = (ok, msg) => { if (!ok) { failures++; console.error(`✗ phone menu: ${msg}`); } };
+  check(await button.isVisible(), 'Menu button not shown at 390px');
+  check(!(await menu.isVisible()), 'menu should start closed at 390px');
+  await button.focus();
+  await page.keyboard.press('Enter');
+  check((await button.getAttribute('aria-expanded')) === 'true' && (await menu.isVisible()), 'Enter does not open the menu');
+  const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  for (const v of violations) check(false, `open menu: ${v.id} ${v.help}`);
+  await page.keyboard.press('Escape');
+  check((await button.getAttribute('aria-expanded')) === 'false' && !(await menu.isVisible()), 'Escape does not close the menu');
+  check(await button.evaluate((el) => el === document.activeElement), 'focus not returned to the Menu button');
+  await context.close();
+
+  const desktop = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const dpage = await desktop.newPage();
+  await dpage.goto(base + '/');
+  check(await dpage.locator('#site-menu').isVisible(), 'menu should be visible at 1440px');
+  check(!(await dpage.locator('.menu-button').isVisible()), 'Menu button should be hidden at 1440px');
+  await desktop.close();
+
+  const nojs = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
+  const npage = await nojs.newPage();
+  await npage.goto(base + '/');
+  check(await npage.locator('#site-menu').isVisible(), 'without JavaScript the menu should show in full');
+  await nojs.close();
+  if (!failures) console.log('✓ phone menu: keyboard, Escape, no-JS fallback');
 } finally {
   await browser.close();
   server.kill();
