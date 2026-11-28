@@ -1,0 +1,30 @@
+{
+  "title": "Facility management | Alai Labs",
+  "description": "Keep restrooms clean through the whole cycle with a cleaning robot your team can watch and control remotely in a 3D view.",
+  "head": {
+    "h1_1": "Facility management",
+    "p_1": "Keep restrooms clean through the whole cycle with a cleaning robot your team can watch and control remotely in a 3D view."
+  },
+  "does": {
+    "h2_1": "What Alai does here",
+    "li_1": "Full-cycle restroom cleaning with the Janitor Robot",
+    "li_2": "Remote control and monitoring in a 3D digital twin",
+    "li_3": "Cleaning that is hygienic, reliable and saves staff time",
+    "h2_2": "Results",
+    "p_1": "Measured results from deployments in this industry to be supplied by the Alai team."
+  },
+  "products": {
+    "h2_1": "Products used",
+    "img_1": {
+      "src": "/assets/img/products/janitor-robot.webp",
+      "alt": ""
+    },
+    "h3_1": "<a href=\"/products/janitor-robot/\">Janitor Robot</a>",
+    "p_1": "Maps restrooms with LIDAR and cleans them, with a 3D view for remote control and monitoring."
+  },
+  "work": {
+    "h2_1": "Case studies",
+    "p_1": "Which case studies belong to this industry is to be confirmed by the Alai team.",
+    "p_2": "<a href=\"/work/\">See all our work</a>"
+  }
+}

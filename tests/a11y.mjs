@@ -17,6 +17,7 @@ async function pages(dir) {
   const out = [];
   for (const e of await readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, e.name);
+    if (e.isDirectory() && e.name === 'admin' && dir === dist) continue; // the admin is not a public page
     if (e.isDirectory()) out.push(...(await pages(full)));
     else if (e.name.endsWith('.html')) {
       const p = '/' + path.relative(dist, full).split(path.sep).join('/');

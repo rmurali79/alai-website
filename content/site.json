@@ -1,0 +1,20 @@
+{
+  "footer": {
+    "img_1": {
+      "src": "/assets/img/brand/alai-logo.webp",
+      "alt": "Alai Labs"
+    },
+    "p_1": "<a href=\"mailto:info@alai-labs.com\">info@alai-labs.com</a>",
+    "p_2": "<a href=\"tel:+6582336313\">+65&nbsp;8233&nbsp;6313</a>",
+    "p_3": "<a href=\"https://www.linkedin.com/company/alai-labs-pte-ltd\">Alai Labs on LinkedIn</a>",
+    "address_1": "<strong>Singapore, head office</strong><br>\nAlai Labs Pte Ltd<br>10 Ubi Crescent, #04-17 Ubi Techpark, Lobby B<br>Singapore 408564",
+    "address_2": "<strong>United States, sales office</strong><br>\nAlai Technology Labs Inc.<br>6751 Columbia Gateway Drive, Suite 300<br>Columbia, MD 21046",
+    "address_3": "<strong>India, development centre</strong><br>\nAlai Technology Labs India Pvt Ltd<br>DLC Tower, 1 Norton 2nd Street, Mandavelipakkam<br>Chennai 600028"
+  },
+  "cta": {
+    "h2_1": "See it working on a site like yours",
+    "p_1": "Tell us about your site and what you want to fix.",
+    "p_2": "Reply time to be confirmed by the Alai team.",
+    "p_3": "<a class=\"button button-on-dark\" href=\"/contact/\">Request a demo</a>"
+  }
+}

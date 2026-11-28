@@ -35,7 +35,7 @@ const fix = (text, file) =>
     .replace(/url\("(\/(?!\/)[^"]*)"\)/g, (_, url) => `url("${relative(url, file)}")`);
 
 await rm(out, { recursive: true, force: true });
-await cp(dist, out, { recursive: true });
+await cp(dist, out, { recursive: true, filter: (f) => !f.startsWith(path.join(dist, 'admin')) });
 for (const full of await list(out)) {
   const file = path.relative(out, full).split(path.sep).join('/');
   if (file.endsWith('.html') || file.endsWith('.css')) await writeFile(full, fix(await readFile(full, 'utf8'), file));

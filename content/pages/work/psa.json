@@ -1,0 +1,29 @@
+{
+  "title": "PSA case study | Alai Labs",
+  "description": "How Alai Labs worked with PSA: the problem, what was deployed and the result.",
+  "head": {
+    "h1_1": "PSA",
+    "p_1": "<span class=\"placeholder\">Case study headline to be supplied by the Alai team.</span>"
+  },
+  "facts": {
+    "h2_1": "At a glance",
+    "img_1": {
+      "src": "/assets/img/logos/psa.webp",
+      "alt": "PSA logo"
+    },
+    "dt_1": "Client",
+    "dd_1": "PSA",
+    "dt_2": "Industry",
+    "dd_2": "<a href=\"/solutions/ports/\">Ports</a> <span class=\"tbc\">to confirm</span>",
+    "dt_3": "Products",
+    "dd_3": "<span class=\"tbc\">To be supplied</span>",
+    "h2_2": "The problem",
+    "p_1": "What the client needed to fix, in their words where possible. To be supplied by the Alai team.",
+    "h2_3": "What we deployed",
+    "p_2": "The robots, sensors and software, where and since when. To be supplied by the Alai team.",
+    "h2_4": "The result",
+    "p_3": "A measured result, for example time saved, downtime avoided or cost reduced. To be supplied by the Alai team.",
+    "h2_5": "Photo",
+    "p_4": "A photo from the deployment. To be supplied by the Alai team."
+  }
+}

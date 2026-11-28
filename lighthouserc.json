@@ -3,7 +3,9 @@
     "collect": {
       "staticDistDir": "./dist",
       "numberOfRuns": 2,
-      "autodiscoverUrlBlocklist": [],
+      "autodiscoverUrlBlocklist": [
+        "/admin/index.html"
+      ],
       "maxAutodiscoverUrls": 0
     },
     "assert": {

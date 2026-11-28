@@ -1,0 +1,41 @@
+{
+  "title": "Outdoor Cleaning Arm | Alai Labs",
+  "description": "A robotic arm fitted to trucks, with LIDAR and AI cameras, for public cleaning and structural maintenance.",
+  "head": {
+    "h1_1": "Outdoor Cleaning Arm",
+    "p_1": "A robotic arm fitted to trucks, with LIDAR and AI cameras, for public cleaning and structural maintenance.",
+    "p_2": "<a class=\"button button-on-dark\" href=\"/contact/\">Request a demo</a>"
+  },
+  "about": {
+    "img_1": {
+      "src": "/assets/img/products/outdoor-cleaning-arm.webp",
+      "alt": "Alai Outdoor Cleaning Arm: a robotic arm mounted on a truck, cleaning a drain at the roadside"
+    },
+    "caption_1": "Existing image. Photos and a video of the product at work are to come; the video will play only when you press play.",
+    "h2_1": "What it does",
+    "p_1": "The Outdoor Cleaning Arm retrofits a robotic arm onto a truck. LIDAR and AI cameras let it find and reach what needs cleaning, for public cleaning crews and for maintenance of structures along the road.",
+    "h3_1": "Used in",
+    "li_1": "<a href=\"/solutions/public-cleaning/\">Public cleaning</a>"
+  },
+  "specs": {
+    "h2_1": "Specifications",
+    "tcaption_1": "Outdoor Cleaning Arm specifications",
+    "th_1": "Mounting",
+    "td_1": "Retrofitted onto trucks",
+    "th_2": "Sensing",
+    "td_2": "LIDAR and AI cameras",
+    "th_3": "Jobs",
+    "td_3": "Public cleaning; structural maintenance",
+    "th_4": "Reach",
+    "td_4": "<span class=\"tbc\">To be supplied</span>",
+    "th_5": "Vehicle requirements",
+    "td_5": "<span class=\"tbc\">To be supplied</span>",
+    "th_6": "Operation",
+    "td_6": "<span class=\"tbc\">To be supplied</span>",
+    "p_1": "Rows marked \"To be supplied\" are waiting on figures from the Alai team."
+  },
+  "deploy": {
+    "h2_1": "Where it is deployed",
+    "p_1": "Deployments (client, site and what it does there) to be supplied by the Alai team."
+  }
+}

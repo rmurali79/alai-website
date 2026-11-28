@@ -11,6 +11,7 @@ const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'd
 async function walk(dir) {
   const out = [];
   for (const e of await readdir(dir, { withFileTypes: true })) {
+    if (e.isDirectory() && e.name === 'admin' && dir === dist) continue; // the admin is not a public page
     const full = path.join(dir, e.name);
     out.push(...(e.isDirectory() ? await walk(full) : [full]));
   }

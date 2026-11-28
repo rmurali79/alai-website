@@ -1,0 +1,154 @@
+{
+  "title": "Alai Labs: robots, edge AI and industrial IoT",
+  "description": "Alai Labs builds robots, edge AI and industrial IoT that keep ports, public services, facilities and factories running, with less manual work and less downtime.",
+  "head": {
+    "h1_1": "Alai Labs builds robots, edge AI and industrial IoT that keep ports, public services, facilities and factories running, with less manual work and less downtime.",
+    "p_1": "Head office in Singapore, development centre in Chennai, sales office in the United States.",
+    "p_2": "<a class=\"button button-on-dark\" href=\"/contact/\">Request a demo</a> <a class=\"button button-on-dark-quiet\" href=\"/work/\">See our work</a>",
+    "img_1": {
+      "src": "/assets/img/products/outdoor-cleaning-arm.webp",
+      "alt": "Alai Outdoor Cleaning Arm: a robotic arm mounted on a truck, cleaning a drain at the roadside"
+    }
+  },
+  "clients": {
+    "h2_1": "Organisations that use Alai",
+    "img_1": {
+      "src": "/assets/img/logos/psa.webp",
+      "alt": "PSA"
+    },
+    "img_2": {
+      "src": "/assets/img/logos/nea.webp",
+      "alt": "NEA"
+    },
+    "img_3": {
+      "src": "/assets/img/logos/smrt.webp",
+      "alt": "SMRT"
+    },
+    "img_4": {
+      "src": "/assets/img/logos/basf.webp",
+      "alt": "BASF"
+    },
+    "img_5": {
+      "src": "/assets/img/logos/cpib.webp",
+      "alt": "CPIB"
+    },
+    "img_6": {
+      "src": "/assets/img/logos/nhb.webp",
+      "alt": "National Heritage Board"
+    },
+    "img_7": {
+      "src": "/assets/img/logos/sutd.webp",
+      "alt": "SUTD"
+    },
+    "img_8": {
+      "src": "/assets/img/logos/wabag.webp",
+      "alt": "Wabag"
+    },
+    "img_9": {
+      "src": "/assets/img/logos/sodick.webp",
+      "alt": "Sodick"
+    },
+    "img_10": {
+      "src": "/assets/img/logos/cpg.webp",
+      "alt": "CPG Corporation"
+    },
+    "img_11": {
+      "src": "/assets/img/logos/ctm.webp",
+      "alt": "CTM"
+    },
+    "img_12": {
+      "src": "/assets/img/logos/windy-heights.webp",
+      "alt": "Windy Heights"
+    },
+    "img_13": {
+      "src": "/assets/img/logos/swipetask.webp",
+      "alt": "Swipetask"
+    },
+    "img_14": {
+      "src": "/assets/img/logos/oxti.webp",
+      "alt": "OXTI Corporation"
+    },
+    "img_15": {
+      "src": "/assets/img/logos/moveon.webp",
+      "alt": "Moveon"
+    },
+    "img_16": {
+      "src": "/assets/img/logos/aitssg.webp",
+      "alt": "AITSSG"
+    },
+    "img_17": {
+      "src": "/assets/img/logos/foodcanopy.webp",
+      "alt": "Food Canopy"
+    }
+  },
+  "build": {
+    "h2_1": "What we build",
+    "h3_1": "Robotics",
+    "p_1": "Autonomous mobile robots and robotic arms that map their surroundings with LIDAR and work beside people.",
+    "li_1": "Autonomous mobile robots",
+    "li_2": "Machine vision for robotic arms",
+    "li_3": "Arms retrofitted onto vehicles",
+    "h3_2": "Edge AI",
+    "p_2": "Models built for one job and run on low-power hardware on site, sized for the compute, network, power and heat they will meet.",
+    "li_4": "Custom models, from problem to deployment",
+    "li_5": "Industrial edge server sizing",
+    "li_6": "Object detection and volume measurement",
+    "h3_3": "Industrial IoT",
+    "p_3": "Outdoor-rated sensors and secure networks that show where assets are and when they need attention.",
+    "li_7": "IP67 sensors, UWB, BLE and active tags",
+    "li_8": "Predictive maintenance and live monitoring",
+    "li_9": "Remote operation through 3D digital twins",
+    "p_4": "<a href=\"/how-we-work/\">How we work</a>"
+  },
+  "products": {
+    "h2_1": "Products",
+    "img_1": {
+      "src": "/assets/img/products/janitor-robot.webp",
+      "alt": "Alai Janitor Robot, a white wheeled robot with two robotic arms"
+    },
+    "h3_1": "<a href=\"/products/janitor-robot/\">Janitor Robot</a>",
+    "p_1": "Maps restrooms with LIDAR and cleans them, with a 3D view for remote control and monitoring.",
+    "img_2": {
+      "src": "/assets/img/products/sensz-ai.webp",
+      "alt": "Three scenes for SensZ.AI sensors: a field, a drain and a street bin with a fill-level display"
+    },
+    "h3_2": "<a href=\"/products/sensz-ai/\">SensZ.AI</a>",
+    "p_2": "An edge AI module with an IP67 outdoor sensor, for object detection and live volume and weight measurement.",
+    "img_3": {
+      "src": "/assets/img/products/outdoor-cleaning-arm.webp",
+      "alt": "Alai Outdoor Cleaning Arm mounted on a truck"
+    },
+    "h3_3": "<a href=\"/products/outdoor-cleaning-arm/\">Outdoor Cleaning Arm</a>",
+    "p_3": "A robotic arm fitted to trucks, with LIDAR and AI cameras, for public cleaning and structural maintenance."
+  },
+  "work": {
+    "h2_1": "Selected work",
+    "p_1": "NEA",
+    "h3_1": "<a href=\"/work/nea/\">Case study title to come</a>",
+    "p_2": "Problem, deployment and measurable result to be supplied by the Alai team.",
+    "p_3": "CTM",
+    "h3_2": "<a href=\"/work/ctm/\">Case study title to come</a>",
+    "p_4": "Problem, deployment and measurable result to be supplied by the Alai team.",
+    "p_5": "PSA",
+    "h3_3": "<a href=\"/work/psa/\">Case study title to come</a>",
+    "p_6": "Problem, deployment and measurable result to be supplied by the Alai team.",
+    "p_7": "<a href=\"/work/\">All five case studies</a>"
+  },
+  "industries": {
+    "h2_1": "Find your industry",
+    "li_1": "<a href=\"/solutions/ports/\">Ports</a>",
+    "li_2": "<a href=\"/solutions/public-cleaning/\">Public cleaning</a>",
+    "li_3": "<a href=\"/solutions/facility-management/\">Facility management</a>",
+    "li_4": "<a href=\"/solutions/waste-management/\">Waste management</a>",
+    "li_5": "<a href=\"/solutions/manufacturing/\">Manufacturing</a>",
+    "li_6": "<a href=\"/solutions/infrastructure-monitoring/\">Infrastructure monitoring</a>",
+    "li_7": "<a href=\"/solutions/occupancy-monitoring/\">Occupancy monitoring</a>"
+  },
+  "quote": {
+    "h2_1": "What clients say",
+    "p_1": "Prabhu and his team at Alai Labs have been exceptional partners in driving our IoT, robotics, and AI initiatives. Their responsiveness, openness to collaboration, and ability to consistently deliver innovative solutions have been instrumental in achieving our goals.",
+    "caption_1": "Thamodaran K., Director, IFM &amp; Operations, CTM",
+    "p_2": "Working with Alai Labs has been a transformative experience for our business. Their cutting-edge IoT/AI solutions seamlessly integrated with our existing infrastructure, providing real-time data that improved operational efficiency. The team’s expertise and professionalism stood out, as they tailored every solution to our specific needs, ensuring a smooth implementation.",
+    "caption_2": "Johnson K., Founder &amp; CEO, Fiberone Asia"
+  }
+}

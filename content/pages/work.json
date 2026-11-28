@@ -1,0 +1,45 @@
+{
+  "title": "Work and case studies | Alai Labs",
+  "description": "Case studies of Alai Labs deployments with NEA, CTM, PSA, SMRT and Sodick.",
+  "head": {
+    "h1_1": "Work",
+    "p_1": "Five deployments with public agencies and industry. Filter by industry to find work like yours."
+  },
+  "case_studies": {
+    "img_1": {
+      "src": "/assets/img/logos/nea.webp",
+      "alt": ""
+    },
+    "h2_1": "<a href=\"/work/nea/\">National Environment Agency</a>",
+    "p_1": "Public cleaning <span class=\"tbc\">to confirm</span>",
+    "p_2": "Problem and result to be supplied by the Alai team.",
+    "img_2": {
+      "src": "/assets/img/logos/ctm.webp",
+      "alt": ""
+    },
+    "h2_2": "<a href=\"/work/ctm/\">CTM</a>",
+    "p_3": "Facility management <span class=\"tbc\">to confirm</span>",
+    "p_4": "Problem and result to be supplied by the Alai team.",
+    "img_3": {
+      "src": "/assets/img/logos/psa.webp",
+      "alt": ""
+    },
+    "h2_3": "<a href=\"/work/psa/\">PSA</a>",
+    "p_5": "Ports <span class=\"tbc\">to confirm</span>",
+    "p_6": "Problem and result to be supplied by the Alai team.",
+    "img_4": {
+      "src": "/assets/img/logos/smrt.webp",
+      "alt": ""
+    },
+    "h2_4": "<a href=\"/work/smrt/\">SMRT Corporation</a>",
+    "p_7": "Infrastructure monitoring <span class=\"tbc\">to confirm</span>",
+    "p_8": "Problem and result to be supplied by the Alai team.",
+    "img_5": {
+      "src": "/assets/img/logos/sodick.webp",
+      "alt": ""
+    },
+    "h2_5": "<a href=\"/work/sodick/\">Sodick</a>",
+    "p_9": "Manufacturing <span class=\"tbc\">to confirm</span>",
+    "p_10": "Problem and result to be supplied by the Alai team."
+  }
+}

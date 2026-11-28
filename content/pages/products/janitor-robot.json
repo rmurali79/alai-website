@@ -1,0 +1,41 @@
+{
+  "title": "Janitor Robot | Alai Labs",
+  "description": "A cleaning robot that maps restrooms with LIDAR and cleans them, while your team watches and controls it in a 3D view.",
+  "head": {
+    "h1_1": "Janitor Robot",
+    "p_1": "A cleaning robot that maps restrooms with LIDAR and cleans them, while your team watches and controls it in a 3D view.",
+    "p_2": "<a class=\"button button-on-dark\" href=\"/contact/\">Request a demo</a>"
+  },
+  "about": {
+    "img_1": {
+      "src": "/assets/img/products/janitor-robot.webp",
+      "alt": "Alai Janitor Robot, a white wheeled robot with two robotic arms and a control panel on top"
+    },
+    "caption_1": "Product image. Photos and a video of the product at work are to come; the video will play only when you press play.",
+    "h2_1": "What it does",
+    "p_1": "The Janitor Robot is built for facility management teams responsible for restroom cleaning. It maps each restroom with LIDAR, cleans it, and links to a 3D view of the site so staff can control and monitor it remotely.",
+    "h3_1": "Used in",
+    "li_1": "<a href=\"/solutions/facility-management/\">Facility management</a>"
+  },
+  "specs": {
+    "h2_1": "Specifications",
+    "tcaption_1": "Janitor Robot specifications",
+    "th_1": "Job",
+    "td_1": "Full-cycle restroom cleaning",
+    "th_2": "Navigation",
+    "td_2": "LIDAR mapping",
+    "th_3": "Remote operation",
+    "td_3": "3D digital twin (Metaverse) view for control and monitoring",
+    "th_4": "Dimensions",
+    "td_4": "<span class=\"tbc\">To be supplied</span>",
+    "th_5": "Battery and run time",
+    "td_5": "<span class=\"tbc\">To be supplied</span>",
+    "th_6": "Cleaning functions",
+    "td_6": "<span class=\"tbc\">To be supplied</span>",
+    "p_1": "Rows marked \"To be supplied\" are waiting on figures from the Alai team."
+  },
+  "deploy": {
+    "h2_1": "Where it is deployed",
+    "p_1": "Deployments (client, site and what it does there) to be supplied by the Alai team."
+  }
+}

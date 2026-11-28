@@ -1,0 +1,41 @@
+{
+  "title": "About Alai Labs",
+  "description": "Who leads Alai Labs, the company story, and offices in Singapore, the United States and India.",
+  "head": {
+    "h1_1": "About Alai Labs",
+    "p_1": "An engineering company building robots, edge AI and industrial IoT, with its head office in Singapore, a sales office in the United States and a development centre in Chennai."
+  },
+  "leaders": {
+    "h2_1": "Leadership",
+    "h3_1": "Dr. Nagaraj Lakshmana Prabhu",
+    "p_1": "Chief Executive Officer",
+    "p_2": "Short bio to be supplied by the Alai team.",
+    "h3_2": "Viswanathan T K",
+    "p_3": "Head of Engineering",
+    "p_4": "Short bio to be supplied by the Alai team."
+  },
+  "story": {
+    "h2_1": "Our story",
+    "p_1": "When and why Alai Labs was founded, the team's size, and the milestones that matter to clients. To be supplied by the Alai team.",
+    "h2_2": "Who we work with",
+    "p_2": "Public agencies, port and transport operators, facility management firms and manufacturers, including NEA, PSA, SMRT, CTM and Sodick.",
+    "p_3": "<a href=\"/work/\">See the case studies</a>"
+  },
+  "offices": {
+    "h2_1": "Offices",
+    "h3_1": "Singapore",
+    "p_1": "Head office",
+    "address_1": "Alai Labs Pte Ltd<br>10 Ubi Crescent, #04-17<br>Ubi Techpark, Lobby B<br>Singapore 408564",
+    "h3_2": "United States",
+    "p_2": "Sales office",
+    "address_2": "Alai Technology Labs Inc.<br>6751 Columbia Gateway Drive, Suite 300<br>Columbia, MD 21046",
+    "h3_3": "India",
+    "p_3": "Development centre",
+    "address_3": "Alai Technology Labs India Pvt Ltd<br>DLC Tower, 1 Norton 2nd Street<br>Mandavelipakkam, Chennai 600028",
+    "p_4": "Email <a href=\"mailto:info@alai-labs.com\">info@alai-labs.com</a>"
+  },
+  "careers": {
+    "h2_1": "Partners and careers",
+    "p_1": "How integrators can partner with Alai and whether Alai is hiring. To be supplied by the Alai team."
+  }
+}

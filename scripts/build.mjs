@@ -5,6 +5,7 @@ import { readFile, writeFile, mkdir, rm, cp, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build as esbuild } from 'esbuild';
+import { buildAdmin } from './cms.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -32,9 +33,6 @@ export function parsePage(text, file) {
     if (i < 0) throw new Error(`${file}: bad front-matter line "${line}"`);
     meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
   }
-  for (const key of ['title', 'description']) {
-    if (!meta[key]) throw new Error(`${file}: front matter needs "${key}"`);
-  }
   return { meta, body: match[2] };
 }
 
@@ -56,7 +54,34 @@ function markCurrent(html, url) {
   });
 }
 
+// Editable text and images live in content/ (edited in the admin at /admin).
+// A page names its file with "content: <id>" (content/pages/<id>.json); the
+// shared footer and closing band read content/site.json. In HTML,
+// {{c:key.path}} inserts a value as HTML and {{a:key.path}} as an attribute.
+async function readJson(file) {
+  return JSON.parse(await readFile(file, 'utf8'));
+}
+
+function lookup(obj, keyPath, where) {
+  const value = keyPath.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+  if (typeof value !== 'string') throw new Error(`${where}: no text for "${keyPath}" in content`);
+  // Text from the admin may hold simple HTML (links, bold, line breaks), never scripts.
+  if (/<\s*(script|iframe|object|embed|style|form)\b|\son\w+\s*=|javascript:/i.test(value)) {
+    throw new Error(`${where}: "${keyPath}" contains a script, frame or event handler, which content may not hold`);
+  }
+  return value;
+}
+
+function fillContent(html, page, site, where) {
+  return html.replace(/\{\{([ca]):([\w.]+)\}\}/g, (_, kind, keyPath) => {
+    const [source, rest] = keyPath.startsWith('site.') ? [site, keyPath.slice(5)] : [page, keyPath];
+    const value = lookup(source, rest, where);
+    return kind === 'a' ? escapeAttr(value) : value;
+  });
+}
+
 async function build() {
+  const site = await readJson(path.join(root, 'content/site.json'));
   const layout = await readFile(path.join(src, 'layout.html'), 'utf8');
   const partials = {};
   for (const name of await readdir(path.join(src, 'partials'))) {
@@ -70,6 +95,12 @@ async function build() {
   const pages = await listHtml(path.join(src, 'pages'));
   for (const file of pages) {
     const { meta, body } = parsePage(await readFile(path.join(src, 'pages', file), 'utf8'), file);
+    const page = meta.content ? await readJson(path.join(root, 'content/pages', `${meta.content}.json`)) : {};
+    meta.title = page.title || meta.title;
+    meta.description = page.description || meta.description;
+    for (const key of ['title', 'description']) {
+      if (!meta[key]) throw new Error(`${file}: needs a ${key} (in its content file or front matter)`);
+    }
     const url = urlPath(file);
     let html = layout.replace(/\{\{>\s*(\w+)\s*\}\}/g, (_, name) => {
       if (!(name in partials)) throw new Error(`layout: unknown partial "${name}"`);
@@ -94,6 +125,7 @@ async function build() {
       if (!(key in values)) throw new Error(`layout: unknown value "${key}"`);
       return values[key];
     });
+    html = fillContent(html, page, site, file);
     html = markCurrent(html, url).replace(/^\s*\n/gm, '');
     const dest = path.join(out, file);
     await mkdir(path.dirname(dest), { recursive: true });
@@ -109,7 +141,7 @@ async function build() {
     path.join(out, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`,
   );
-  await writeFile(path.join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  await writeFile(path.join(out, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
   // React islands: each src/react/<name>.jsx becomes /assets/js/<name>.react.js,
   // loaded only by the page that needs it (Work and Contact).
@@ -128,7 +160,9 @@ async function build() {
       logLevel: 'warning',
     });
   }
-  console.log(`Built ${pages.length} page(s) and ${islands.length} React island(s) into dist/`);
+  // The admin at /admin (not a public page: no layout, kept out of search and the page checks).
+  await buildAdmin(root, out);
+  console.log(`Built ${pages.length} page(s), ${islands.length} React island(s) and the admin into dist/`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
