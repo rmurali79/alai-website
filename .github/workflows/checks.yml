@@ -33,6 +33,8 @@ jobs:
         run: npm run check:html
       - name: Internal links
         run: npm run check:links
+      - name: Server setup matches the web server config
+        run: npm run check:deploy
       - name: Install Chromium for the accessibility check
         run: npx playwright install --with-deps chromium
       - name: Accessibility (axe, WCAG 2.2 AA, 390 and 1440 px)

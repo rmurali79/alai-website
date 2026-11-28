@@ -24,7 +24,7 @@ Content still missing (results, bios, specs) is marked with a visible placeholde
 
 | Step | What happens |
 | --- | --- |
-| O1 | Set up static hosting on Hetzner with HTTPS |
+| O1 | Set up static hosting on Hetzner with HTTPS. Ready: server setup, web server config and automatic deploy; steps in `docs/operations/hetzner.md` |
 | O2 | Redirect old anchor links; return 410 for the spam URLs |
 | O3 | Move DNS from AWS to the new host (Alai team approves go-live) |
 | O4 | Submit sitemap and remove spam URLs in Google Search Console |
