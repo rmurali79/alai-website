@@ -13,10 +13,12 @@
     "check:pages": "node scripts/check-pages.mjs",
     "check:html": "html-validate \"dist/**/*.html\"",
     "check:links": "node scripts/check-links.mjs",
+    "check:deploy": "node scripts/cloud-init.mjs --check",
     "check:a11y": "node tests/a11y.mjs",
     "check:lighthouse": "lhci autorun",
-    "check": "npm run build && npm run check:pages && npm run check:html && npm run check:links && npm run check:a11y",
-    "preview": "npm run build && node scripts/preview.mjs"
+    "check": "npm run build && npm run check:pages && npm run check:html && npm run check:links && npm run check:deploy && npm run check:a11y",
+    "preview": "npm run build && node scripts/preview.mjs",
+    "deploy:cloud-init": "node scripts/cloud-init.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.1",

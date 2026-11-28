@@ -79,6 +79,10 @@ The admin is at `/admin/` on the live site. It is a Git-based CMS (Sveltia CMS),
 - **Images:** uploads go to `src/assets/img/uploads/`. Use WebP or JPEG, about 1000 px wide and under 300 KB, and always describe the image for screen readers unless it is decoration.
 - **Text with links:** some fields show HTML such as `<a href="/work/">See all our work</a>`. Change the words, keep the tags.
 
+## Hosting
+
+The site runs on a Hetzner Cloud server with Caddy, which handles HTTPS. After the checks pass on `main`, GitHub publishes `dist/` there (`.github/workflows/deploy.yml`). Server setup and go-live steps: `docs/operations/hetzner.md`. The web server config is `deploy/Caddyfile`; after changing it, run `npm run deploy:cloud-init`.
+
 ## Checks
 
 Every pull request runs these in GitHub Actions; a failure blocks the merge.

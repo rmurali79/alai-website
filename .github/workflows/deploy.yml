@@ -1,0 +1,85 @@
+name: Deploy
+
+# Publishes the site to the Hetzner server, but only after "Checks" has passed
+# on a merge to main. Until the DEPLOY_* secrets are added it does nothing.
+# Setup: docs/operations/hetzner.md.
+on:
+  workflow_run:
+    workflows: [Checks]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publish to the server
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+    steps:
+      - name: Check the server is set up
+        id: ready
+        run: |
+          if [ -z "$DEPLOY_HOST" ]; then
+            echo "::notice::No DEPLOY_HOST secret yet, so nothing was published. See docs/operations/hetzner.md."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.ready.outputs.go == 'true'
+        run: npm ci
+      - if: steps.ready.outputs.go == 'true'
+        name: Build
+        run: npm run build
+
+      - if: steps.ready.outputs.go == 'true'
+        name: Set up SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          printf 'Host site\n  HostName %s\n  User deploy\n  IdentityFile ~/.ssh/deploy\n  StrictHostKeyChecking yes\n' "$DEPLOY_HOST" > ~/.ssh/config
+
+      # Each version goes in its own folder; "current" then switches to it in
+      # one step, so visitors never see a half-copied site. The last five
+      # versions are kept so a bad one can be rolled back by hand.
+      - if: steps.ready.outputs.go == 'true'
+        name: Publish
+        run: |
+          release="$(date -u +%Y%m%d%H%M%S)-$(git rev-parse --short HEAD)"
+          rsync -az --delete --link-dest=/var/www/alai/current/ dist/ "site:/var/www/alai/releases/$release/"
+          ssh site "set -e; cd /var/www/alai; ln -sfn releases/$release current.new; mv -Tf current.new current; cd releases; ls -1t | tail -n +6 | xargs -r rm -rf"
+          echo "Published $release"
+
+      - if: steps.ready.outputs.go == 'true' && vars.SITE_URL != ''
+        name: Check the live site answers
+        run: |
+          curl -fsS -o /dev/null "${{ vars.SITE_URL }}/"
+          curl -fsS -o /dev/null "${{ vars.SITE_URL }}/contact/"
+          test "$(curl -s -o /dev/null -w '%{http_code}' "${{ vars.SITE_URL }}/no-such-page/")" = 404
