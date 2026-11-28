@@ -1,0 +1,30 @@
+{
+  "title": "High-precision manufacturing | Alai Labs",
+  "description": "Bring Industry 4.0 to the factory floor with connected machines, digital twins and mobile robots you can run remotely.",
+  "head": {
+    "h1_1": "High-precision manufacturing",
+    "p_1": "Bring Industry 4.0 to the factory floor with connected machines, digital twins and mobile robots you can run remotely."
+  },
+  "does": {
+    "img_1": {
+      "src": "/assets/img/industries/manufacturing.webp",
+      "alt": "Engineer in a headset looking at a digital model of a machine"
+    },
+    "h2_1": "What Alai does here",
+    "li_1": "Industrial IoT across machines and lines",
+    "li_2": "Digital twins and augmented reality",
+    "li_3": "Cloud design, implementation and management",
+    "li_4": "Autonomous mobile robots with remote operation",
+    "h2_2": "Results",
+    "p_1": "Measured results from deployments in this industry to be supplied by the Alai team."
+  },
+  "products": {
+    "h2_1": "Products used",
+    "p_1": "Which products are used in this industry is to be confirmed by the Alai team."
+  },
+  "work": {
+    "h2_1": "Case studies",
+    "p_1": "Which case studies belong to this industry is to be confirmed by the Alai team.",
+    "p_2": "<a href=\"/work/\">See all our work</a>"
+  }
+}

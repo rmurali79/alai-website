@@ -1,0 +1,30 @@
+{
+  "title": "Waste management | Alai Labs",
+  "description": "Know which bins need emptying, spot illegal dumping and hazardous waste, and plan collection routes from live data.",
+  "head": {
+    "h1_1": "Waste management",
+    "p_1": "Know which bins need emptying, spot illegal dumping and hazardous waste, and plan collection routes from live data."
+  },
+  "does": {
+    "img_1": {
+      "src": "/assets/img/industries/waste-management.webp",
+      "alt": "Robotic arm sorting waste into recycling bins"
+    },
+    "h2_1": "What Alai does here",
+    "li_1": "Bin fill-level monitoring",
+    "li_2": "Illegal dumping and hazardous waste detection",
+    "li_3": "E-waste sorting and recycling anomaly detection",
+    "li_4": "Collection route optimisation",
+    "h2_2": "Results",
+    "p_1": "Measured results from deployments in this industry to be supplied by the Alai team."
+  },
+  "products": {
+    "h2_1": "Products used",
+    "p_1": "Which products are used in this industry is to be confirmed by the Alai team."
+  },
+  "work": {
+    "h2_1": "Case studies",
+    "p_1": "Which case studies belong to this industry is to be confirmed by the Alai team.",
+    "p_2": "<a href=\"/work/\">See all our work</a>"
+  }
+}

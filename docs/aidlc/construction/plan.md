@@ -16,6 +16,7 @@ Construction turns the [requirements](../inception/requirements.md) into the sit
 | U9 | Contact with React Request a demo form and form service | US-08 | PR review |
 | U10 | Privacy, 404, sitemap, per-page meta, structured data | US-12 | PR review |
 | U11 | Full QA pass at 390, 768 and 1440 px; preview link for sign-off | All | **Alai team signs off** |
+| U12 | Admin at `/admin` to edit text and images on every page (Git-based, Sveltia CMS); page content moved into `content/` | All | Requested by Muralidharan, 28 Nov 2026 |
 
 Content still missing (results, bios, specs) is marked with a visible placeholder so pages can ship for review and be filled later.
 

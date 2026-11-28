@@ -1,0 +1,20 @@
+{
+  "title": "Request a demo | Alai Labs",
+  "description": "Request a demo from Alai Labs, or reach our offices in Singapore, the United States and India.",
+  "head": {
+    "h1_1": "Request a demo",
+    "p_1": "Tell us about your site and what you want to fix. We will set up a demo of the robots, sensors or edge AI that fit."
+  },
+  "request_a_demo": {
+    "h2_1": "What happens next",
+    "li_1": "We read your request and reply by email.",
+    "li_2": "We agree a time and the site or problem to focus on.",
+    "li_3": "We show the products or a deployment that fits.",
+    "p_1": "Reply time and who handles requests to be confirmed by the Alai team.",
+    "h2_2": "Other ways to reach us",
+    "p_2": "Email <a href=\"mailto:info@alai-labs.com\">info@alai-labs.com</a>",
+    "p_3": "Phone <a href=\"tel:+6582336313\">+65&nbsp;8233&nbsp;6313</a>",
+    "p_4": "<a href=\"https://www.linkedin.com/company/alai-labs-pte-ltd\">Alai Labs on LinkedIn</a>",
+    "p_5": "<a href=\"/about/\">Our offices in Singapore, the United States and India</a>"
+  }
+}

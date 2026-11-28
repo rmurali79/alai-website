@@ -1,0 +1,41 @@
+{
+  "title": "SensZ.AI | Alai Labs",
+  "description": "An edge AI module with an IP67 outdoor sensor, for object detection and live volume and weight measurement.",
+  "head": {
+    "h1_1": "SensZ.AI",
+    "p_1": "An edge AI module with an IP67 outdoor sensor, for object detection and live volume and weight measurement.",
+    "p_2": "<a class=\"button button-on-dark\" href=\"/contact/\">Request a demo</a>"
+  },
+  "about": {
+    "img_1": {
+      "src": "/assets/img/products/sensz-ai.webp",
+      "alt": "Three scenes for SensZ.AI sensors: a field, a drain and a street bin with a fill-level display"
+    },
+    "caption_1": "Existing image. Photos and a video of the product at work are to come; the video will play only when you press play.",
+    "h2_1": "What it does",
+    "p_1": "SensZ.AI puts a trained model next to the sensor, so detection happens on site rather than in the cloud. The sensor is rated IP67 for outdoor use, and the module supports custom models for object detection and real-time measurement of volume and weight.",
+    "h3_1": "Used in",
+    "p_2": "Industries this product is used in to be confirmed by the Alai team."
+  },
+  "specs": {
+    "h2_1": "Specifications",
+    "tcaption_1": "SensZ.AI specifications",
+    "th_1": "Type",
+    "td_1": "Edge AI module with outdoor sensor",
+    "th_2": "Ingress rating",
+    "td_2": "IP67, outdoor rated",
+    "th_3": "Models",
+    "td_3": "Custom model deployment",
+    "th_4": "Functions",
+    "td_4": "Object detection; real-time volumetric weight measurement",
+    "th_5": "Connectivity",
+    "td_5": "<span class=\"tbc\">To be supplied</span>",
+    "th_6": "Power",
+    "td_6": "<span class=\"tbc\">To be supplied</span>",
+    "p_1": "Rows marked \"To be supplied\" are waiting on figures from the Alai team."
+  },
+  "deploy": {
+    "h2_1": "Where it is deployed",
+    "p_1": "Deployments (client, site and what it does there) to be supplied by the Alai team."
+  }
+}

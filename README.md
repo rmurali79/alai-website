@@ -22,14 +22,19 @@ npm run preview    # copy of the site in preview/ with relative links, for revie
 ```
 src/
   layout.html        the page shell: <head>, skip link, header, main, footer
-  partials/          header.html and footer.html, shared by every page
+  partials/          header, footer and the closing band, shared by every page
   pages/             one file per page; the path is the URL
+  admin/index.html   the admin page (Sveltia CMS)
   react/             React islands: work-filter.jsx becomes /assets/js/work-filter.react.js
   assets/            copied as they are:
     css/site.css     design tokens (colours, type, spacing) and all shared styles
     fonts/           Space Grotesk and Manrope, self-hosted (OFL)
     js/menu.js       the phone menu button; without JavaScript the menu shows in full
+content/
+  site.json          text and images in the footer and closing band
+  pages/<page>.json  text and images of each page (edited in the admin)
 scripts/
+  cms.mjs            builds the admin's form for every content file (dist/admin/config.yml)
   build.mjs          stamps layout and partials into each page, bundles React islands with esbuild,
                      writes sitemap.xml and robots.txt, and outputs dist/
   serve.mjs          local preview of dist/
@@ -40,31 +45,39 @@ tests/a11y.mjs       axe accessibility check at 390, 768 and 1440 px
 dist/                the built site (plain HTML, not committed)
 ```
 
-A page is HTML with a short header:
+A page is HTML with a short header naming its content file. Its words and images are placeholders filled from that file:
 
 ```html
 ---
-title: Ports | Alai Labs
-description: One sentence, unique to this page.
+content: solutions/ports
 ---
 <section class="page-head">
   <div class="wrap">
-    <h1>Ports</h1>
-    <p class="lede">One or two sentences under the title.</p>
+    <h1>{{c:head.h1_1}}</h1>
+    <p class="lede">{{c:head.p_1}}</p>
   </div>
-</section>
-<section class="band">
-  <div class="wrap">...</div>
 </section>
 ```
 
-Every page opens with the plum `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B, Warm and confident, chosen in U1.
+`{{c:key}}` inserts text (simple HTML such as links is allowed) and `{{a:key}}` inserts an attribute value, such as an image's `src` or `alt`. Keys are `section.field`, read from `content/pages/solutions/ports.json`, which also holds the page's `title` and `description`. `{{c:site.…}}` reads `content/site.json`. To add text to a page, add the key to its content file and the placeholder to the HTML; the admin picks up new keys on the next build. The build stops if a placeholder has no text, or if any text holds a script, frame or event handler.
+
+Every page opens with the navy `page-head` band. Below it, use `band` sections (add `band-stone` for the stone background), `grid-2` or `grid-3` for columns, `card` with `card-body` for cards, and `button`, `button-quiet`, or `button-on-dark` for actions. The look is design direction B from U1, in the Alai logo colours.
 
 `src/pages/solutions/ports/index.html` is served at `/solutions/ports/`. Add `noindex: true` to keep a page out of search results, and `scripts: /assets/js/name.react.js` to load a React island on that page only (React is allowed only on Work and Contact; the site-rules check enforces it). Use `{{> cta}}` in a page body for the closing Request a demo band. A menu link marked `data-nav` gets `aria-current="page"` on the pages it covers.
 
 **Request a demo form:** the form service endpoint is one setting, in `src/pages/contact/index.html`: put the URL in `data-endpoint` on `#contact-form` and in the form's `action`, and the reply time in `data-reply-time`. Until it is set, the form tells visitors to email info@alai-labs.com and never shows a false success.
 
 Content the Alai team has not supplied yet goes in a visible `<p class="placeholder">`, never an invented fact.
+
+## Editing text and images (admin)
+
+The admin is at `/admin/` on the live site. It is a Git-based CMS (Sveltia CMS), so there is no server or database: each save is a commit to `main` on GitHub, and the checks below run on it.
+
+- **Who can edit:** anyone with write access to this repository.
+- **Signing in:** choose "Sign In Using Access Token" and paste a GitHub fine-grained personal access token. Create it at GitHub, Settings, Developer settings, Fine-grained tokens, for this repository only, with "Contents: Read and write". "Sign In with GitHub" also needs a small OAuth helper service, which is not set up.
+- **On your own computer:** run `npm run dev`, open `http://localhost:8080/admin/`, choose "Work with Local Repository" and pick this folder (Chrome or Edge). Changes are written to the files directly, for you to commit.
+- **Images:** uploads go to `src/assets/img/uploads/`. Use WebP or JPEG, about 1000 px wide and under 300 KB, and always describe the image for screen readers unless it is decoration.
+- **Text with links:** some fields show HTML such as `<a href="/work/">See all our work</a>`. Change the words, keep the tags.
 
 ## Checks
 
