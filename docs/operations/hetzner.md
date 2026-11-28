@@ -10,7 +10,7 @@ What is in the repository:
 | `deploy/cloud-init.yaml` | Sets the server up on first start: Caddy, firewall, a `deploy` user, automatic security updates. Generated from the Caddyfile by `npm run deploy:cloud-init` |
 | `.github/workflows/deploy.yml` | Publishes `dist/` to the server after "Checks" passes on `main`. Does nothing until the secrets below exist |
 
-The domain stays where it is until step 6. Steps 1 to 5 change nothing on the current site.
+The domain stays where it is until step 6. Steps 1 to 5 change nothing on the current site and need no DNS changes.
 
 ## 1. Make a deploy key (on your computer, once)
 
@@ -33,17 +33,17 @@ This makes two files: `alai_deploy` (private, goes into GitHub in step 4) and `a
 
 Setup takes a few minutes after the server starts. To confirm it finished: `ssh root@<IPv4> cloud-init status` should say `done`.
 
-## 3. Point a test address at it
+## 3. Open the test address
 
-At the company that hosts the alai-labs.com DNS, add records for a test address. This does not touch the live site.
+No domain change is needed to start. On first start the server names itself `<IPv4 with dashes>.sslip.io`, a free service that points that name at the IP, and Caddy gets a real HTTPS certificate for it. For IPv4 `65.108.247.20` the address is https://65-108-247-20.sslip.io. It shows "The site is being set up." until the first publish. (The bare IP does not work in a browser: certificates are only issued for names.)
 
-| Name | Type | Value |
-| --- | --- | --- |
-| `staging` | A | server IPv4 |
-| `staging` | AAAA | server IPv6 |
-| `www.staging` | A | server IPv4 |
+If the server was created with an older copy of the cloud config, set the address by hand (use your IP in both places):
 
-Within a few minutes Caddy gets a certificate and https://staging.alai-labs.com shows "The site is being set up."
+```sh
+ssh root@65.108.247.20 "sed -i 's/SITE_DOMAIN=.*/SITE_DOMAIN=65-108-247-20.sslip.io/' /etc/systemd/system/caddy.service.d/site.conf && systemctl daemon-reload && systemctl restart caddy"
+```
+
+Later, a `staging.alai-labs.com` record can be used the same way, with that name as `SITE_DOMAIN`.
 
 ## 4. Connect GitHub
 
@@ -63,13 +63,13 @@ In GitHub, open the repository's **Settings > Secrets and variables > Actions** 
 | `DEPLOY_SSH_KEY` | the whole of the private file `alai_deploy` |
 | `DEPLOY_KNOWN_HOSTS` | the line `ssh-keyscan` printed |
 
-Optional, under the **Variables** tab: `SITE_URL` = `https://staging.alai-labs.com`. With it, each deploy checks the live site answers.
+Optional, under the **Variables** tab: `SITE_URL` = the test address, for example `https://65-108-247-20.sslip.io`. With it, each deploy checks the live site answers.
 
 Then delete `alai_deploy` from your computer, or keep it somewhere safe. Never commit it.
 
 ## 5. First publish and review
 
-In **Actions > Deploy**, choose **Run workflow**. After that, every merge to `main` that passes the checks is published on its own. Review https://staging.alai-labs.com. It is the real site on the real server.
+In **Actions > Deploy**, choose **Run workflow**. After that, every merge to `main` that passes the checks is published on its own. Review the test address. It is the real site on the real server.
 
 Deploys only publish; they never restart or reconfigure the server. Each version keeps its own folder, and the last five are kept. To roll back by hand:
 
@@ -91,7 +91,7 @@ Do this only after sign-off, the form service and the privacy review (see `docs/
    ```
 3. Change the `@` (alai-labs.com) and `www` A records to the server's IPv4, and add AAAA records with its IPv6. Remove any old AAAA records that point elsewhere.
 4. Caddy gets the certificate once the records reach it, usually within minutes. Check https://alai-labs.com and that https://www.alai-labs.com goes to it.
-5. Set the GitHub variable `SITE_URL` to `https://alai-labs.com`, and remove the `staging` records.
+5. Set the GitHub variable `SITE_URL` to `https://alai-labs.com`.
 
 ## Changing the web server config
 

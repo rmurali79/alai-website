@@ -1,7 +1,7 @@
 # Web server for alai-labs.com on the Hetzner server (Caddy 2).
 # Caddy gets and renews the HTTPS certificate on its own.
 # SITE_DOMAIN is set in /etc/systemd/system/caddy.service.d/site.conf:
-# staging.alai-labs.com while testing, alai-labs.com once the domain moves.
+# <ip-with-dashes>.sslip.io while testing, alai-labs.com once the domain moves.
 # After changing this file, copy it to /etc/caddy/Caddyfile on the server and
 # run: systemctl reload caddy (see docs/operations/hetzner.md).
 
