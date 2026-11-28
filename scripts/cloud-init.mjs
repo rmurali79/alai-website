@@ -51,9 +51,11 @@ write_files:
   - path: /etc/systemd/system/caddy.service.d/site.conf
     content: |
       [Service]
-      # The address the site answers on. Change to alai-labs.com when the
-      # domain moves, then: systemctl daemon-reload && systemctl restart caddy
-      Environment=SITE_DOMAIN=staging.alai-labs.com
+      # The address the site answers on. On first start this becomes
+      # <ip-with-dashes>.sslip.io, a free name for the server's IP that gets
+      # real HTTPS. Change to alai-labs.com when the domain moves, then:
+      # systemctl daemon-reload && systemctl restart caddy
+      Environment=SITE_DOMAIN=PENDING
   - path: /var/www/alai/releases/initial/index.html
     content: |
       <!doctype html><html lang="en"><title>Alai Labs</title><p>The site is being set up.</p></html>
@@ -70,6 +72,7 @@ runcmd:
   - chown -R deploy:deploy /var/www/alai
   - install -m 644 /root/Caddyfile.alai /etc/caddy/Caddyfile
   - caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+  - IP=$(curl -fsS http://169.254.169.254/hetzner/v1/metadata/public-ipv4) && sed -i "s/SITE_DOMAIN=PENDING/SITE_DOMAIN=$(echo "$IP" | tr . -).sslip.io/" /etc/systemd/system/caddy.service.d/site.conf
   - systemctl daemon-reload
   - systemctl restart caddy
   - ufw allow OpenSSH
